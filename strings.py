@@ -25,3 +25,4 @@ print(name[1:4])
 print(name[:2]) # bastan basla 2 ye  kadar git
 print(name[1:]) # 1 den basla sona kadar git
 print(name[:4:2]) # 2 ser 2 ser atalyarak gider
+print(name[::-1]) # bize tersten yazdirir
