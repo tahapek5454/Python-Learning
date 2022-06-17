@@ -1,3 +1,6 @@
+Sayfa basina ekleme
+listenin 1. indexine writelines kullanarak ekleme 
+listenin 1. indexine ekleme 
 Taha Pek Ülker Şu an ekleme yapiyorum Şu an ekleme yapiyorum
 alt satirdayim Şu an ekleme yapiyorum
 alt satirdayim
