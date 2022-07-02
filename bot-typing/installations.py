@@ -1,5 +1,5 @@
 
-
+# pip install --user selenium
 
 from selenium import webdriver
 
