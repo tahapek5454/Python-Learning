@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #header {
+            font-style: italic;
+            font-size: 45px;
+            color: red;
+        }
+
+        .course h2 {
+            color: blue;
+        }
+
+        .course.java h2 {
+
+            color: red;
+        }
+
+        #username {
+
+            border-color: red;
+        }
+
+        input[type="password"] {
+            border-color: yellow;
+
+        }
+
+        #submit{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id = "container">
+
+        <h1 id = "header">Kurslar</h1>
+        <hr>
+        <div class = "course python">
+            <h2>Pytho Kursu</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid expedita sint accusantium tempora, voluptatem, temporibus explicabo placeat cum reprehenderit odit vero dicta fuga. At iure delectus mollitia, molestiae amet obcaecati!</p>
+        </div>
+
+        <div class = "course c">
+            <h2>C Kursu</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid expedita sint accusantium tempora, voluptatem, temporibus explicabo placeat cum reprehenderit odit vero dicta fuga. At iure delectus mollitia, molestiae amet obcaecati!</p>
+        </div>
+
+        <div class = "course java">
+            <h2>java Kursu</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid expedita sint accusantium tempora, voluptatem, temporibus explicabo placeat cum reprehenderit odit vero dicta fuga. At iure delectus mollitia, molestiae amet obcaecati!</p>
+        </div>
+
+        <div>
+            <form>
+                UserName: <input type="text" name="username" id="username"><br>
+                Password: <input type="password" name="password" id="password"><br>
+                <input type="submit" value="Login" id="submit"> 
+
+
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>
