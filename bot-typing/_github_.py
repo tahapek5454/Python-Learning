@@ -10,7 +10,7 @@ class Github:
 
         self.user_name = user_name
         self.password = password
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(r"C:\Users\90543\Desktop\VS\python\web-driver\chromedriver.exe")
         self.followers = []
 
     def logIn(self):
@@ -54,7 +54,7 @@ class Github:
             print(i)
 
 
-github = Github('tahapek5454','t112589p')
+github = Github('YourUserName','YourPassword')
 
 github.logIn()
 print('*'*100)
