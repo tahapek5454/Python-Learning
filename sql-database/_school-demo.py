@@ -13,6 +13,16 @@
     # ("305","Bahadır","Toksöz",datetime(2004, 7, 27),"E"),
     # ("306","Ali","Cenk",datetime(2003, 8, 25),"E")
 
+# 4- Aşağıdaki sorguları yazınız.
+#   a- Tüm öğrenci kayıtlarını alınız.
+#   b- Tüm öğrencilerin sadece öğrenci no, ad ve soyad bilgilerini alınız.
+#   c- Sadece kız öğrencilerin ad ve soyadlarını alınız.
+#   d- 2003 doğumlu öğrenci bilgilerini alınız. 
+#   e- İsmi Ali ve doğum tarihi 2005 olan öğrenci bilgilerini alınız.
+#   f- ad veya soyadı içinde 'an' ifadesi geçen kayıtları alınız. 
+#   g- Kaç erkek öğrenci vardır ?
+#   h- Kız öğrencileri harf sırasına göre getiriniz.
+
 
 import mysql.connector
 from datetime import datetime
@@ -65,7 +75,97 @@ class Student:
         finally:
             Student.connection.close()
             print('Baglanti kesildi databasesinizi kontrol ediniz')
-        
+    
+    @staticmethod
+    def getStudents():
+        sql = 'SELECT * FROM student'
+
+        Student.cursor.execute(sql)
+
+        result = Student.cursor.fetchall()
+
+        for i in result:
+            print(f'id = {i[0]} - Number = {i[1]} - Name = {i[2]} - Surname = {i[3]} - Birthdate = {i[4]} - Gender = {i[5]}')
+
+    
+    @staticmethod
+    def getStudentsBasic():
+        sql = 'SELECT s_number , name , surname FROM student'
+
+        Student.cursor.execute(sql)
+
+        result = Student.cursor.fetchall()
+
+        for i in result:
+            print(f'Number = {i[0]} - Name = {i[1]} - Surname = {i[2]}')
+
+    @staticmethod
+    def getGirls():
+
+        sql = 'SELECT  name , surname FROM student WHERE  gender = "K" '
+
+        Student.cursor.execute(sql)
+
+        result = Student.cursor.fetchall()
+
+        for i in result:
+            print(f'Name = {i[0]} - Surname = {i[1]}')
+    
+    @staticmethod
+    def getStudentsWithDate(date):
+        sql = 'SELECT * FROM student WHERE birthdate BETWEEN "'+date+'-01-01" AND "'+date+'-12-30"'
+
+        Student.cursor.execute(sql)
+
+        result = Student.cursor.fetchall()
+
+        for i in result:
+            print(f'id = {i[0]} - Number = {i[1]} - Name = {i[2]} - Surname = {i[3]} - Birthdate = {i[4]} - Gender = {i[5]}')
+
+    @staticmethod
+    def getStudentsWithYearWithName(name , date):
+        sql = 'SELECT * FROM student WHERE name = "'+name+'" AND YEAR(birthdate) = '+date
+
+        Student.cursor.execute(sql)
+
+        result = Student.cursor.fetchall()
+
+        for i in result:
+            print(f'id = {i[0]} - Number = {i[1]} - Name = {i[2]} - Surname = {i[3]} - Birthdate = {i[4]} - Gender = {i[5]}')
+
+    @staticmethod
+    def getStudentsWithHasStr(string):
+        sql = 'SELECT * FROM student WHERE name LIKE "%'+string+'%" '
+
+        Student.cursor.execute(sql)
+
+        result = Student.cursor.fetchall()
+
+        for i in result:
+            print(f'id = {i[0]} - Number = {i[1]} - Name = {i[2]} - Surname = {i[3]} - Birthdate = {i[4]} - Gender = {i[5]}')
+
+    @staticmethod
+    def getBoyCount():
+        sql = 'SELECT gender , COUNT(*) as count FROM student WHERE gender = "E" GROUP BY gender'
+
+        Student.cursor.execute(sql)
+
+        result = Student.cursor.fetchall()
+
+        for i in result:
+            print(f'Erkek Sayisi = {i[1]}')
+    
+
+    @staticmethod
+    def getGirlWithOrder():
+        sql = 'SELECT * FROM student WHERE gender = "K" ORDER BY name'
+
+        Student.cursor.execute(sql)
+
+        result = Student.cursor.fetchall()
+
+        for i in result:
+            print(f'id = {i[0]} - Number = {i[1]} - Name = {i[2]} - Surname = {i[3]} - Birthdate = {i[4]} - Gender = {i[5]}')
 #-------------------------------------------------------------------------------------------
 
 def insertValues(liste):
@@ -104,6 +204,22 @@ liste = [
 # ayse = Student(8,'308','Ayse','Sezer',datetime(2000,9,23),'K')
 # ayse.addStudent()
 
-Student.addStudents(liste)
+# Student.addStudents(liste)
+
+# Student.getStudents()
+
+# Student.getStudentsBasic()
+
+# Student.getGirls()
+
+# Student.getStudentsWithDate(str(2003))
+
+# Student.getStudentsWithYearWithName('Ahmet','2005')
+
+# Student.getStudentsWithHasStr('an')
+
+# Student.getBoyCount()
+
+Student.getGirlWithOrder()
 
 # taha pek
