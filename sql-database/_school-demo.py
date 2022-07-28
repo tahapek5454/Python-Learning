@@ -24,6 +24,10 @@
 #   h- Kız öğrencileri harf sırasına göre getiriniz.
 
 
+# 5- Aşağıdaki güncelleme sorularını yapınız.
+#   a- id' e göre aldığınız bir öğrencinin bilgilerini güncelleyiniz.
+
+
 import mysql.connector
 from datetime import datetime
 
@@ -166,6 +170,26 @@ class Student:
 
         for i in result:
             print(f'id = {i[0]} - Number = {i[1]} - Name = {i[2]} - Surname = {i[3]} - Birthdate = {i[4]} - Gender = {i[5]}')
+
+    @staticmethod
+    def updateStudent(id,number,name,surname):
+
+        sql = 'UPDATE student SET  s_number = %s , name = %s , surname = %s WHERE id = %s'
+        values = (number,name,surname,id)        
+
+        Student.cursor.execute(sql,values) #verilen sorguyu uygalatiyotuz
+
+        try:
+            Student.connection.commit() # commit ederek sorguyu database e aktariyoruz
+            print(f'{Student.cursor.rowcount} tane kayit Guncelledi')
+        
+        except Exception as ex:
+            print("hata")
+            print(ex)
+        
+
+
+
 #-------------------------------------------------------------------------------------------
 
 def insertValues(liste):
@@ -220,6 +244,8 @@ liste = [
 
 # Student.getBoyCount()
 
-Student.getGirlWithOrder()
+# Student.getGirlWithOrder()
+
+Student.updateStudent(2,'145','Kemal','Astra')
 
 # taha pek
