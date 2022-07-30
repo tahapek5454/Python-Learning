@@ -49,6 +49,33 @@ class DbManage:
             return Student.crateStudents(obj)
         except Exception as ex:
             print('Eoror',ex)
+    
+
+
+    def deleteStudent(self,studentid):
+        sql = "delete from student where id=%s"
+        value = (studentid,)
+        self.cursor.execute(sql,value)
+
+        try:
+            self.connection.commit()
+            print(f'{self.cursor.rowcount} tane kayıt eklendi.')
+        except Exception as ex:
+            print('hata:', ex)
+
+    def getClasses(self):
+        
+        sql = 'SELECT * FROM class'
+        
+
+        self.cursor.execute(sql)
+
+        try :
+            obj = self.cursor.fetchall()
+            return Class.createClass(obj)
+        except Exception as ex:
+            print('Eoror',ex)
+
 
     def addStudent(self, student : Student):
         sql = 'INSERT INTO student(s_number,name,surname,birthdate,gender,class_id) VALUES(%s,%s,%s,%s,%s,%s)'
@@ -84,9 +111,4 @@ class DbManage:
         pass
 
 
-db = DbManage()
-
-new_student = db.getStudentById(1)
-
-print(new_student.name)
 
