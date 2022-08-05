@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '_listView.ui'
+# Form implementation generated from reading ui file '_listWiew.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -17,9 +17,9 @@ class Ui_MainWindow(object):
         MainWindow.resize(800, 600)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.listView = QtWidgets.QListView(self.centralwidget)
-        self.listView.setGeometry(QtCore.QRect(70, 70, 411, 421))
-        self.listView.setObjectName("listView")
+        self.listWidget = QtWidgets.QListWidget(self.centralwidget)
+        self.listWidget.setGeometry(QtCore.QRect(110, 70, 381, 411))
+        self.listWidget.setObjectName("listWidget")
         self.widget = QtWidgets.QWidget(self.centralwidget)
         self.widget.setGeometry(QtCore.QRect(550, 70, 77, 411))
         self.widget.setObjectName("widget")
