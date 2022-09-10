@@ -22,13 +22,13 @@
                     <a href="{% url 'about' %}" class="nav-link">About</a>
                 </li>
 
-                <li {% if request.path == '/' %}
+                <li {% if 'movies' in request.path %}
                     class="nav-item active"
                     {% else %}
                     class="nav-item"
                     {% endif %}
                 >
-                    <a href="{% url 'index' %}" class="nav-link">Movie</a>
+                    <a href="{% url 'movies' %}" class="nav-link">Movie</a>
                 </li>
             </ul>
         </div>
