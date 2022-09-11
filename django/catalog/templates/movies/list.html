@@ -1,8 +1,9 @@
 {% extends 'layout.html' %}
+
 {% load static %}
+{% load humanize %}
 
 {% block content %}
-
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -11,114 +12,42 @@
     </div>
 </div>
 
+
 <div class="row">
     <div class="col-md-12">
-        <div class="card mb-3">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="{% static 'img/1.jpg' %}" alt="" class="card-img">
-                </div>
-                <div class="col-md-9">
-                    <div class="card-body">
-                        <div class="card-title">High Life</div>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus ipsum quis modi et
-                            similique eligendi.
 
-                        </p>
-                        <p class="card-text">
-                            <small class="text-muted">3 days ago</small>
-                        </p>
+        {% if movies %}
+            {% for movie in movies %}
+                <div class="card mb-3">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="card-img" src="{% static movie.get_image_path %}" alt="">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <div class="card-title"> 
+                                <a href="{% url 'detail' movie.id %}"> {{ movie.name }}</a>
+                             </div>
+                            <p class="card-text">
+                                    {{ movie.description }} 
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">{{ movie.create_date | timesince }}</small>
+                            </p>
+                        </div>
                     </div>
                 </div>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <div class="alert alert-warning">
+                <p>
+                    No Movies
+                </p>
             </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="{% static 'img/2.jpg' %}" alt="" class="card-img">
-                </div>
-                <div class="col-md-9">
-                    <div class="card-body">
-                        <div class="card-title">High Life</div>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus ipsum quis modi et
-                            similique eligendi.
-
-                        </p>
-                        <p class="card-text">
-                            <small class="text-muted">7 days ago</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="{% static 'img/3.jpg' %}" alt="" class="card-img">
-                </div>
-                <div class="col-md-9">
-                    <div class="card-body">
-                        <div class="card-title">High Life</div>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus ipsum quis modi et
-                            similique eligendi.
-
-                        </p>
-                        <p class="card-text">
-                            <small class="text-muted">3 days ago</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="{% static 'img/4.jpg' %}" alt="" class="card-img">
-                </div>
-                <div class="col-md-9">
-                    <div class="card-body">
-                        <div class="card-title">High Life</div>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus ipsum quis modi et
-                            similique eligendi.
-
-                        </p>
-                        <p class="card-text">
-                            <small class="text-muted">5 days ago</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="{% static 'img/5.jpg' %}" alt="" class="card-img">
-                </div>
-                <div class="col-md-9">
-                    <div class="card-body">
-                        <div class="card-title">High Life</div>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus ipsum quis modi et
-                            similique eligendi.
-
-                        </p>
-                        <p class="card-text">
-                            <small class="text-muted">2 days ago</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endif %}      
+     
     </div>
 </div>
-
-
 {% endblock %}

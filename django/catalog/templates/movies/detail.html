@@ -1,8 +1,25 @@
 {% extends 'layout.html' %}
-
-
+{% load static %}
+{% load humanize %}
 {% block content %}
 
-<h1>detatil</h1>
+<div class="row">
+    <div class="col-md-3">
+        <img class="card-img" src="{% static movie.get_image_path %}" alt="">
+    </div>
+    <div class="col-md-9">
+        <h1>
+            <p class="text-capitalize">{{ movie.name }}</p>
+        </h1>
+        <hr>
+        <p class="font-italic">
+            {{ movie.description }}
+        </p>
+        <hr>
+        <p class="card-text">
+            <small class="text-muted">{{ movie.create_date | timesince }}</small>
+        </p>
+    </div>
+</div>
 
 {% endblock %}
