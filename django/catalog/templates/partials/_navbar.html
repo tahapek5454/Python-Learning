@@ -31,7 +31,21 @@
                     <a href="{% url 'movies' %}" class="nav-link">Movie</a>
                 </li>
             </ul>
+
+            
             <ul class="navbar-nav">
+
+                {% if user.is_authenticated %}   
+
+                <li class="nav-item">
+                    <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">({{ user.username }})Logout</a>
+                    <form action="{% url 'logout' %}" method="post" id="logout">
+                        {% csrf_token %}
+                        <input type="hidden">
+                    </form>
+                </li>
+
+                {% else %}
             
                 <li {% if 'login' in request.path %}
                     class="nav-item active"
@@ -49,8 +63,12 @@
                     {% endif %}
                 >
                     <a href="{% url 'register' %}" class="nav-link">Register</a>
+                    
                 </li>
+                {% endif %}
+                
             </ul>
+            
         </div>
     </div>
 

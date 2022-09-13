@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib import auth
+from django.contrib import auth, messages
 
-import user
+
 
 # Create your views here.
 
@@ -16,10 +16,10 @@ def login(request):
         user = auth.authenticate(username= userName, password= password)
         if user is not None:
             auth.login(request, user)
-            print('login basarlili')
+            messages.add_message(request, messages.SUCCESS, 'Login Basarili')
             return redirect('index')
         else:
-            print('Kullanici adi veya sifre hatali')
+            messages.add_message(request, messages.ERROR, 'Kullanici Adi Veya Sifre Hatali')
             return redirect('login')
                 
 
@@ -29,6 +29,11 @@ def login(request):
         
 
 def logout(request):
+    if request.method == 'POST':
+        auth.logout(request)
+        messages.add_message(request, messages.SUCCESS, 'Oturum Kapatıldı')
+        return redirect('index')
+
     return render(request, 'user/logout.html')
 
 def register(request):
@@ -41,17 +46,17 @@ def register(request):
 
         if repassword == password:
             if User.objects.filter(username = userName).exists():
-                print('Kullanıcı adı daha once alinmis')
+                 messages.add_message(request, messages.WARNING, 'Kullanıcı adı daha once alinmis')
             elif User.objects.filter(email = email).exists():
-                print('Email daha once alinmis')
+                 messages.add_message(request, messages.WARNING, 'Email daha once alinmis')
             else:
                 # her sey yolunda
                 user = User.objects.create_user(username= userName, email= email, password= password)
                 user.save()
-                print('Kullanici Olusturuldu')
+                messages.add_message(request, messages.SUCCESS, 'Kullanici Olusturuldu')
                 return redirect('login')
         else:
-            print('Sifreler eslesmiyor')
+            messages.add_message(request, messages.WARNING, 'Sifreler eslesmiyor')
             return redirect('register')
                 
 
