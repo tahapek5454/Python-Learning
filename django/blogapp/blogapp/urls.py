@@ -14,8 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+# diger app lerden gelen urls leri aktarmak icin include u import ettin
+
+
+# http://127.0.0.1:8000/ ==> index.html
+# http://127.0.0.1:8000/index ==> index.html
+# http://127.0.0.1:8000/blog ==> blog.html
+# http://127.0.0.1:8000/blog/3 ==> blog-details
+
+# include ederken tirak icini bos biraktım eger doldursam mesele user yazsam
+# http://127.0.0.1:8000/user/ bu sekilde baslardi hepsi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('blog.urls')),
 ]
