@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!-- id bilgisi gelecekti bizim requestimizden bunu render yaparken key value seklinde almıstık
+<!-- nerdeki contente gidecegini yani sablonun hani sablon oldugunu belirtmelyiz -->
+{% extends "base.html" %}
+
+<!-- base sablonumuzdki hangi kısma gelecegini belitiryoruz -->
+
+{% block title %}
+Blogs_Details Title
+{% endblock %}
+
+{% block content %}
+<!-- id bilgisi gelecekti bizim requestimizden bunu render yaparken key value seklinde almıstık
          alınan bu degiskenleri kullanmak icin ic ice süslü parantez yapısını kullanırız -->
-    <h1>blog details id : {{id}}</h1>
-</body>
-</html>
+<h1>blog details id : {{id}}</h1>
+{% endblock %}

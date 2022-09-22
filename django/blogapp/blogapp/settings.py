@@ -52,11 +52,14 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'blogapp.urls'
-
+# burada uygulamalar icersindeki templates dosyalarını otomatik takip ediyor fakat
+# şablon olarak olusturacagımız templates klosorunu aynı dizinde oldugundan biz gostermeliyiz
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / "templates"
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
