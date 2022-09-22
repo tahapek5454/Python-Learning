@@ -122,7 +122,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# burası bize her uygulama icersindeki static dosyalarını dısa aktarır (uygulama seviyesi)
+
 STATIC_URL = '/static/'
+
+# aynı templatede yaptigimiz gibi genel dizinde tanımlamak istiyorsak (proje seviyesi)
+STATICFILES_DIRS = [
+
+    BASE_DIR / 'static'
+
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

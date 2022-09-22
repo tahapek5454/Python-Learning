@@ -1,8 +1,13 @@
-
 <!-- nerdeki contente gidecegini yani sablonun hani sablon oldugunu belirtmelyiz -->
 {% extends "base.html" %}
 
+{% load static %}
+<!-- static dosylarını yuklemek icin kullanılır -->
 
+<!-- bu sayfaya ozgu css leri eklemek icin -->
+{% block css %}
+<link rel="stylesheet" href="{% static 'blog/css/style.css'%}">
+{% endblock %}
 <!-- base sablonumuzdki hangi kısma gelecegini belitiryoruz -->
 
 {% block title %}
@@ -11,4 +16,9 @@ HomePage Title
 
 {% block content %}
 <h1>Home Page</h1>
+<img src="{% static 'blog/img/doga2.png' %}" alt="Gorsel Bulunumadı" width="100">
+{% endblock %}
+
+{% block js_file %}
+<script src="{% static 'blog/js/scripts.js' %}"></script>
 {% endblock %}
