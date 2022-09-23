@@ -8,7 +8,26 @@ Blogs_Details Title
 {% endblock %}
 
 {% block content %}
-<!-- id bilgisi gelecekti bizim requestimizden bunu render yaparken key value seklinde almıstık
+
+
+<div class="container mt-3">
+    <div class="row">
+        <!-- menu -->
+        <div class="col-3">
+
+            <!-- daha saglıklı calisma icin parcalaa boluyoruz buraya baska bir bolumdan parca dahil etmek icin
+                 include kullanıyoruz (templates icersine bakar) -->
+            {% include 'partials/_categories.html' %}
+
+        </div>
+        <!-- card -->
+        <div class="col-9">
+            <!-- id bilgisi gelecekti bizim requestimizden bunu render yaparken key value seklinde almıstık
          alınan bu degiskenleri kullanmak icin ic ice süslü parantez yapısını kullanırız -->
-<h1>blog details id : {{id}}</h1>
+            <h1>blog details id : {{id}}</h1>
+
+
+        </div>
+    </div>
+</div>
 {% endblock %}

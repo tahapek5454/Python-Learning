@@ -2,13 +2,14 @@
 <!-- static dosylarını yuklemek icin kullanılır -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}"> 
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
     <!-- bu sekilde static dosyasından style.css i aktif hale getirdik spesifik olarak blog altındaki-->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- bu sekilde sonradan ekledigimiz ana dizindekine erisiyor -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
@@ -21,19 +22,20 @@
         {% endblock %}
     </title>
 </head>
+
 <body>
+
+
 
     <!-- burda herkes icin ortak ola yapıları barındıracağız -->
     <!-- degiskenlik gösteren kısımları block content içersine alacagiz -->
 
-    <ul>
-        <li>
-            <a href="#">Homa</a>
-        </li>
-        <li>
-            <a href="#">Blog</a>
-        </li>
-    </ul>
+    <!-- navbar -->
+    <!-- daha saglıklı calisma icin parcalaa boluyoruz buraya baska bir bolumdan parca dahil etmek icin
+        include kullanıyoruz (templates icersine bakar) -->
+        {% include 'partials/_navbar.html' %}
+
+
 
     {% block content %}
 
@@ -42,8 +44,9 @@
     <script src="{% static 'js/bootstrap.min.js'%}"></script>
     <script src="{% static 'js/base.js'%}"></script>
     {% block js_file %}
-    
+
     {% endblock %}
-    
+
 </body>
+
 </html>
