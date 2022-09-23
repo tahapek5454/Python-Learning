@@ -1,12 +1,13 @@
 <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
     <div class="container">
-        <a href="#" class="navbar-brand">BlogApp</a>
+        <!-- url sekilinde faha once tanımladıgımız url lere ypnlendiriyoruz -->
+        <a href="{% url 'home' %}" class="navbar-brand">BlogApp</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a href="#" class="nav-link">Home</a>
+                <a href="{% url 'home' %}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Blog</a>
+                <a href="{% url 'blogs' %}" class="nav-link">Blog</a>
             </li>
         </ul>
     </div>

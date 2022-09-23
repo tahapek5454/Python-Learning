@@ -17,8 +17,8 @@ from . import views
 # bu urls leri ana uygulamaya tanımayı unutma
 
 urlpatterns = [
-    path("",views.index), # burada tirnakları bos birakınca eklentisiz anlamına geliyor
+    path("",views.index, name='home'), # burada tirnakları bos birakınca eklentisiz anlamına geliyor, name ise bu linki kullanmak için lazım
     path("index",views.index), # artik index yazdıktan sonra da gelsin dedik
-    path("blogs",views.blogs),
-    path("blogs/<int:id>",views.blogs_details), # <int:id> int tipinde id adında bir degisken gelicek
+    path("blogs",views.blogs, name='blogs'),
+    path("blogs/<int:id>",views.blogs_details, name='blogs_details'), # <int:id> int tipinde id adında bir degisken gelicek
 ]
