@@ -1,6 +1,9 @@
 <!-- nerdeki contente gidecegini yani sablonun hani sablon oldugunu belirtmelyiz -->
 {% extends "base.html" %}
 
+{% load static %}
+<!-- static dosylarını yuklemek icin kullanılır -->
+
 <!-- base sablonumuzdki hangi kısma gelecegini belitiryoruz -->
 
 {% block title %}
@@ -24,7 +27,10 @@ Blogs_Details Title
         <div class="col-9">
             <!-- id bilgisi gelecekti bizim requestimizden bunu render yaparken key value seklinde almıstık
          alınan bu degiskenleri kullanmak icin ic ice süslü parantez yapısını kullanırız -->
-            <h1>blog details id : {{id}}</h1>
+            
+                <!-- gelen dinamik blogu gosterelim -->
+                <!-- zaten tek blog gelceginden boyle yapıyoruz -->
+                {% include 'blog/partials/_blog.html' %}
 
 
         </div>

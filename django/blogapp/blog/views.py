@@ -1,3 +1,4 @@
+from select import select
 from django.http.response import HttpResponse
 from django.shortcuts import render
 
@@ -55,7 +56,7 @@ def index(request):
 
 def blogs(request):
 
-    # data yı sayfaya yollamamız icin
+    # data yı sayfaya yollamamız icin key value lazım onun da key i ile islem yapıyorsun
     context = {
         'blogs':data['blogs']
     }
@@ -68,6 +69,15 @@ def blogs_details(request, id):
 
     # bizim parametre olarak gelen id yi kullanammız icin 3. parametreye key value seklinde
     # gelen id yi gondermemiz lazım
+
+    blogs = data['blogs']
+    selected_blog = None
+
+    for blog in blogs:
+        if blog['id'] == id:
+            selected_blog = blog
+    # burdaki islemler sayesşnde secili blogu aldık ve onu sayfay gonderdik
+
     return render(request, "blog/blogs_details.html", {
-        "id": id,
+        "blog": selected_blog,
     })
