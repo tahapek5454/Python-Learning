@@ -13,11 +13,54 @@ from django.shortcuts import render
 # render a request ve ilgili templates klosorundeki html sayfalarını gönderiyor
 # tüm uygulamalardaki templates kolosorlerine baktığından karışmaması adına biz klosor klosor yapalım
 
+
+# dinamik veri isleme temellerini atıyoruz
+data = {
+    'blogs':[
+        {
+        'id':1,
+        'title':'web gelistirme',
+        'image':'1.png',
+        'is_active':True,
+        'is_home':False,
+        'description':'cok iyi bit kurs'
+        },
+        {
+        'id':2,
+        'title':'react gelistirme',
+        'image':'2.png',
+        'is_active':True,
+        'is_home':True,
+        'description':'cok iyi bit kurs'
+        },
+        {
+        'id':3,
+        'title':'c# gelistirme',
+        'image':'3.png',
+        'is_active':False,
+        'is_home':True,
+        'description':'cok iyi bit kurs'
+        }
+    ]
+}
+
 def index(request):
-    return render(request, "blog/index.html")
+
+    # data yı sayfaya yollamamız icin
+    context = {
+        'blogs':data['blogs']
+    }
+    # iceri de aktarmak icin parametre olarak yolladık
+    return render(request, "blog/index.html", context)
 
 def blogs(request):
-    return render(request, 'blog/blogs.html')
+
+    # data yı sayfaya yollamamız icin
+    context = {
+        'blogs':data['blogs']
+    }
+    # iceri de aktarmak icin parametre olarak yolladık
+    return render(request, 'blog/blogs.html',context)
 
 def blogs_details(request, id):
     # block details ın id alma sebebi url kısmında değişken bir <int:id> deger gelecegini 

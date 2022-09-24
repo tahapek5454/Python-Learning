@@ -2,21 +2,29 @@
 <div class="card mb-3">
     <div class="row">
         <div class="col-md-3">
-
-            <img src="{% static 'img/1.png'%}" alt="Image is not found" class="img-fluid rounded-start">
+            <!-- benim bilgileri dinamik cekmem gerekiyor o yuzden burdaki bazı yerleri degistirmelyim
+            onu da blog degiskeninden gelen verilerle degisitircem gelen verilere gore de ekleme islemine
+            filter la yapacaım | bu isaret string e string ekelemek icin |add:blog.image gibi -->
+            <img src="{% static 'img/'|add:blog.image %}" alt="Image is not found" class="img-fluid rounded-start">
 
         </div>
         <div class="col-md-9">
             <div class="card-body">
                 <h5 class="card-title">
                     <!-- ekstra digerlerinden farklı 1 verme sebeim parametre fazlalığı -->
-                    <a href="{% url 'blogs_details' 1 %}">
-                        Card title
+                    <!-- dinamik veriyi eklemeden kullacaksak direkt yazabiliriz -->
+                    <a href="{% url 'blogs_details' blog.id %}">
+                        <!-- dinamik veriyi string dısı kullanacaksan da süslü parantezler icersinde
+                        kullanmalıyız -->
+                        {{ blog.title }}
                     </a>
                     
                 </h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text">
+                     <!-- dinamik veriyi string dısı kullanacaksan da süslü parantezler icersinde
+                        kullanmalıyız -->
+                        {{ blog.description }}
+                </p>
 
             </div>
         </div>
