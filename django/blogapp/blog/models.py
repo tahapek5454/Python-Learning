@@ -1,6 +1,3 @@
-from statistics import mode
-from turtle import title
-from xml.parsers.expat import model
 from django.db import models
 
 # Create your models here.
@@ -9,6 +6,10 @@ from django.db import models
 
 # gecen yaptıgımız views icersindeki data dict ini buraya koyalım
 # ve onu veri tabanına baglayalım
+
+
+# once migratin olusturmak için makemigrations
+# bunlaraı migrate ederek aktarsının
 
 class Blog (models.Model):
     # id otomatik veriliyor
