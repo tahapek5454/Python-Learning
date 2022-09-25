@@ -1,6 +1,9 @@
+from multiprocessing import context
 from select import select
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from blog.models import Blog
+# bu importu db den blog ları dinamik cekmek icin aldık
 
 
 # Create your views here.
@@ -44,22 +47,41 @@ data = {
         }
     ]
 }
-
+# fakat artık db den veri cekcegimizden bunu kullanmauacagiz
 def index(request):
 
     # data yı sayfaya yollamamız icin
+    # context = {
+    #     'blogs':data['blogs']
+    # }
+    # bunu artık dinamik db den cekmek icin kullanmayacagiz
+
     context = {
-        'blogs':data['blogs']
+        'blogs':Blog.objects.filter(is_home=True, is_active = True)
+        # filtreleme islemi
+        # bu sekilde all diyerek tum verileri alrızı
     }
+
+
+
     # iceri de aktarmak icin parametre olarak yolladık
     return render(request, "blog/index.html", context)
 
 def blogs(request):
 
     # data yı sayfaya yollamamız icin key value lazım onun da key i ile islem yapıyorsun
+     # data yı sayfaya yollamamız icin
+    # context = {
+    #     'blogs':data['blogs']
+    # }
+    # bunu artık dinamik db den cekmek icin kullanmayacagiz
+
     context = {
-        'blogs':data['blogs']
+        'blogs':Blog.objects.filter(is_active = True)
+        # bu sekilde all diyerek tum verileri alrızı
     }
+
+
     # iceri de aktarmak icin parametre olarak yolladık
     return render(request, 'blog/blogs.html',context)
 
@@ -70,13 +92,19 @@ def blogs_details(request, id):
     # bizim parametre olarak gelen id yi kullanammız icin 3. parametreye key value seklinde
     # gelen id yi gondermemiz lazım
 
-    blogs = data['blogs']
-    selected_blog = None
+    # blogs = data['blogs']
+    # selected_blog = None
 
-    for blog in blogs:
-        if blog['id'] == id:
-            selected_blog = blog
+    # for blog in blogs:
+    #     if blog['id'] == id:
+    #         selected_blog = blog
     # burdaki islemler sayesşnde secili blogu aldık ve onu sayfay gonderdik
+    # artik bu islemlere gerek yok basitce filtreleyelim
+
+    
+    selected_blog = Blog.objects.get(id=id)
+    # get bize bir sonuc dondurur digerleri liste
+    print(selected_blog)
 
     return render(request, "blog/blogs_details.html", {
         "blog": selected_blog,
