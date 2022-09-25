@@ -11,6 +11,8 @@ from django.db import models
 # once migratin olusturmak için makemigrations
 # bunlaraı migrate ederek aktarsının
 
+# burada shell acip nesne uretip nesne.save() diyerek elle kayıt ekleyebilriz
+
 class Blog (models.Model):
     # id otomatik veriliyor
     title = models.CharField(max_length=200)
