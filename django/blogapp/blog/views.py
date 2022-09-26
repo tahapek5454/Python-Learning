@@ -85,7 +85,8 @@ def blogs(request):
     # iceri de aktarmak icin parametre olarak yolladık
     return render(request, 'blog/blogs.html',context)
 
-def blogs_details(request, id):
+def blogs_details(request, slug):
+    # id ler slug a dondu
     # block details ın id alma sebebi url kısmında değişken bir <int:id> deger gelecegini 
     # belirtmemiz gelen degeree gore islem yapacagiz
 
@@ -102,7 +103,7 @@ def blogs_details(request, id):
     # artik bu islemlere gerek yok basitce filtreleyelim
 
     
-    selected_blog = Blog.objects.get(id=id)
+    selected_blog = Blog.objects.get(slug=slug)
     # get bize bir sonuc dondurur digerleri liste
     print(selected_blog)
 

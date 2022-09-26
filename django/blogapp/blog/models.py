@@ -1,5 +1,6 @@
 import this
 from django.db import models
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -24,6 +25,19 @@ class Blog (models.Model):
     is_home = models.BooleanField(default=False)
     description = models.TextField(null=True)
 
+    # slug olusutrucaz slug bizim categorilerizimiz detaylarını
+    # daha iyi olusturmamaıza yarayacak
+    # basta ayar icin ture yaptıgımız null ı false layalım
+    slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
+
+    # bizim ekstra her biri icin slug girmemize gerek yok
+    # save metonunu overwrite edip title koyduk mu slug da koymaya ayarlayacagız
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+
 
     # panelimizde veriler basta ne diye gozuksun onun ayarı
     # biz title yaptık
@@ -34,6 +48,12 @@ class Blog (models.Model):
 
 class Category (models.Model):
     name = models.CharField(max_length=150)
+
+    slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
+    def save(self, *args, **kwargs):
+
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     # panelimizde veriler basta ne diye gozuksun onun ayarı
     # biz title yaptık

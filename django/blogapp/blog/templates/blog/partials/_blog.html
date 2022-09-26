@@ -13,7 +13,7 @@
                 <h5 class="card-title">
                     <!-- ekstra digerlerinden farklı 1 verme sebeim parametre fazlalığı -->
                     <!-- dinamik veriyi eklemeden kullacaksak direkt yazabiliriz -->
-                    <a href="{% url 'blogs_details' blog.id %}">
+                    <a href="{% url 'blogs_details' blog.slug %}">
                         <!-- dinamik veriyi string dısı kullanacaksan da süslü parantezler icersinde
                         kullanmalıyız -->
                         {{ blog.title }}
