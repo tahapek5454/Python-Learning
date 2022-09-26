@@ -1,6 +1,9 @@
+import this
 from django.db import models
 
 # Create your models here.
+
+# not : admin paneline gitmede createsuperuser ile user olusturmalısın
 
 # model bizim databaseimizdeki tablolara dek dusuyor
 
@@ -22,5 +25,17 @@ class Blog (models.Model):
     description = models.TextField(null=True)
 
 
+    # panelimizde veriler basta ne diye gozuksun onun ayarı
+    # biz title yaptık
+    def __str__(self) -> str:
+        return f"{self.title}"
+    
+
+
 class Category (models.Model):
     name = models.CharField(max_length=150)
+
+    # panelimizde veriler basta ne diye gozuksun onun ayarı
+    # biz title yaptık
+    def __str__(self) -> str:
+        return f"{self.name}"
