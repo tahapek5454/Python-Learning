@@ -2,8 +2,8 @@ from multiprocessing import context
 from select import select
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from blog.models import Blog
-# bu importu db den blog ları dinamik cekmek icin aldık
+from blog.models import Blog, Category
+# bu importu db den blog ları ve caegoryleri dinamik cekmek icin aldık
 
 
 # Create your views here.
@@ -57,7 +57,8 @@ def index(request):
     # bunu artık dinamik db den cekmek icin kullanmayacagiz
 
     context = {
-        'blogs':Blog.objects.filter(is_home=True, is_active = True)
+        'blogs':Blog.objects.filter(is_home=True, is_active = True),
+        'categories':Category.objects.all()
         # filtreleme islemi
         # bu sekilde all diyerek tum verileri alrızı
     }
@@ -77,7 +78,8 @@ def blogs(request):
     # bunu artık dinamik db den cekmek icin kullanmayacagiz
 
     context = {
-        'blogs':Blog.objects.filter(is_active = True)
+        'blogs':Blog.objects.filter(is_active = True),
+        'categories':Category.objects.all()
         # bu sekilde all diyerek tum verileri alrızı
     }
 
@@ -109,4 +111,10 @@ def blogs_details(request, slug):
 
     return render(request, "blog/blogs_details.html", {
         "blog": selected_blog,
+        'category':Category.objects.all()
     })
+
+
+def blogs_by_category(request, slug):
+    pass
+

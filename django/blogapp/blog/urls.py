@@ -20,5 +20,6 @@ urlpatterns = [
     path("",views.index, name='home'), # burada tirnakları bos birakınca eklentisiz anlamına geliyor, name ise bu linki kullanmak için lazım
     path("index",views.index), # artik index yazdıktan sonra da gelsin dedik
     path("blogs",views.blogs, name='blogs'),
+    path("category/<slug:slug>",views.blogs_by_category, name="blogs_by_category"), # category ici path ekledik
     path("blogs/<slug:slug>",views.blogs_details, name='blogs_details'), # <int:id> int tipinde id adında bir degisken gelicek bunu artık slug a cevirdik
 ]
