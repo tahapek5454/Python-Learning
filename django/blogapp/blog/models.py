@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 import this
 from django.db import models
 from django.utils.text import slugify
@@ -17,10 +18,13 @@ from django.utils.text import slugify
 
 # burada shell acip nesne uretip nesne.save() diyerek elle kayıt ekleyebilriz
 
+
+# imagefield upload klosoru altına bize parametrede verilen kolsore gorselleri kaydeder
+# imageField kullanman için pip install Pillow indirmelisin
 class Blog (models.Model):
     # id otomatik veriliyor
     title = models.CharField(max_length=200)
-    image = models.CharField(max_length=50)
+    image = models.ImageField(upload_to = "blogs")
     is_active = models.BooleanField(default=False)
     is_home = models.BooleanField(default=False)
     description = models.TextField(null=True)

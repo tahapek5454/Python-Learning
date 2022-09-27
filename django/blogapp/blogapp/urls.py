@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+#  bu alttaki iki import dinmaik bir sekilde kaydedilicek gorselleri cekmek icin
+from django.conf.urls.static import static
+from django.conf import settings
 
 # diger app lerden gelen urls leri aktarmak icin include u import ettin
 
@@ -30,4 +33,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-]
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) 
+#  sondaki static eklemesi gorselleri cekmek icin kullanılmıstır

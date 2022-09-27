@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from msilib.schema import Media
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -132,6 +133,16 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 
 ]
+
+
+# simdi burda da uploads dosyasını yolunu göstermemiz lazım resimleri finamik yüklemeli çekicez
+
+MEDIA_ROOT = BASE_DIR /"uploads"
+
+# takma isim de tanımlayalım
+MEDIA_URL = "/images/"
+
+# not : imageField kullanmak için pip install pillow yapmlaısın
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -4,8 +4,11 @@
         <div class="col-md-3">
             <!-- benim bilgileri dinamik cekmem gerekiyor o yuzden burdaki bazı yerleri degistirmelyim
             onu da blog degiskeninden gelen verilerle degisitircem gelen verilere gore de ekleme islemine
-            filter la yapacaım | bu isaret string e string ekelemek icin |add:blog.image gibi -->
-            <img src="{% static 'img/'|add:blog.image %}" alt="Image is not found" class="img-fluid rounded-start">
+            filter la yapacaım | bu isaret string e string ekelemek icin |add:blog.image gibi
+            bu bahsettigimi "{% static 'img/'|add:blog.image %}" bu sekilde yapıyorduk fakat şimdi daha
+            dinamik bir çalıma yapıp veritabanıyla bağlantılı gorselleitirme islemi yapacagiz bu yüzden
+            sistemizi degitiriyoruz (direkt sayfaya gelen blog nesnesindeki image urli alsak yeter)  -->
+            <img src="{{ blog.image.url }}" alt="Image is not found" class="img-fluid rounded-start">
 
         </div>
         <div class="col-md-9">
