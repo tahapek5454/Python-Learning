@@ -1,4 +1,5 @@
 from distutils.command.upload import upload
+from email.policy import default
 import this
 from django.db import models
 from django.utils.text import slugify
@@ -21,6 +22,24 @@ from django.utils.text import slugify
 
 # imagefield upload klosoru altına bize parametrede verilen kolsore gorselleri kaydeder
 # imageField kullanman için pip install Pillow indirmelisin
+
+
+# foreig key gorsun diye üste aldım
+class Category (models.Model):
+    name = models.CharField(max_length=150)
+
+    slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
+    def save(self, *args, **kwargs):
+
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    # panelimizde veriler basta ne diye gozuksun onun ayarı
+    # biz title yaptık
+    def __str__(self) -> str:
+        return f"{self.name}"
+
+
 class Blog (models.Model):
     # id otomatik veriliyor
     title = models.CharField(max_length=200)
@@ -33,6 +52,13 @@ class Blog (models.Model):
     # daha iyi olusturmamaıza yarayacak
     # basta ayar icin ture yaptıgımız null ı false layalım
     slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
+
+    # foreig key ekleyecegiz bloglarımıza cünkü clogları categorilerde sınıflayacagiz
+    category = models.ForeignKey(Category, default=3,  on_delete = models.CASCADE)
+    # MODELS CASCADE category silindi mi blogun da silinmesini saglıyor
+    #  onun yerine SET_NULL null=True ya da defaul ataarsın atma da kullanabailirsin
+    # basta var olan kayıtlara bu kolon eklenicek ve null olsun istemiyoruz heppsi
+    # programlamananın altında oldugudan default olarak onun id sini vereyim
 
     # bizim ekstra her biri icin slug girmemize gerek yok
     # save metonunu overwrite edip title koyduk mu slug da koymaya ayarlayacagız
@@ -50,16 +76,3 @@ class Blog (models.Model):
     
 
 
-class Category (models.Model):
-    name = models.CharField(max_length=150)
-
-    slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
-    def save(self, *args, **kwargs):
-
-        self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
-
-    # panelimizde veriler basta ne diye gozuksun onun ayarı
-    # biz title yaptık
-    def __str__(self) -> str:
-        return f"{self.name}"
