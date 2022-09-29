@@ -14,6 +14,9 @@ class BlogAdmin(admin.ModelAdmin):
     search_fields = ['title', 'description'] # arama cubugu eklemes
     # readonly_fields = ['description'] sadece okunabilir olur
     readonly_fields = ['slug']
+    # burda direkt kendi filtreleme islemimizi yapabiliyoruz
+    # işte programlamaları getir, mobilleri getir, active olanları getir gibi
+    list_filter = ['category', 'is_active', 'is_home']
 
 
 class CategoryAdmin(admin.ModelAdmin):

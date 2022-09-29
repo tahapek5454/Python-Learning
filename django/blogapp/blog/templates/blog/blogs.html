@@ -24,11 +24,27 @@ BlogsPage Title
             <!-- uygulamaya ozgu html geleceginde bulundugu yerin yolunu gostericez -->
              <!-- ve de dinamik bir sekilde gosterecegimizden parametre olarak adlıgmız context
             icersindeki blogs tan cekecegiz -->
-            {% for blog in blogs %}
-                {% if blog.is_active %}
-                    {% include 'blog/partials/_blog.html' %}
-                {% endif %}
-            {% endfor %}
+            <!-- biz normalde getiriyorduk da uygulamamız dah agüzel gozuksun diye soyle bir
+                yontem uygulayacacgiz bize bir blogs geliyor ve bu bazen atıyorum categoride hic
+                blog yok bos gelicek ya sayfa bos gozukmesin oraya bir yazı yazalım diye if blog
+                ları ve filteer kullanarak bir sistem olustualım -->
+            <!-- yazılış tam böyle olmalı yoksa syttax hata veriyor -->
+            {% if blogs|length > 0 %}
+                {% for blog in blogs %}
+                    {% if blog.is_active %}
+                        {% include 'blog/partials/_blog.html' %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+
+                    <div class="container">
+                        <p class="display-6"> 
+                          {{ selectedCategory.name|title }} adlı kategoriyle eşleşen bir ders bulunmuyor. 
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
             
         </div>
     </div>

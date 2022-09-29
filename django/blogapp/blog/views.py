@@ -1,5 +1,6 @@
 from multiprocessing import context
 from select import select
+from unicodedata import category
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from blog.models import Blog, Category
@@ -116,5 +117,18 @@ def blogs_details(request, slug):
 
 
 def blogs_by_category(request, slug):
-    pass
+    # burda filtrelee islemini gerceklestirecegiz
+    # filtreleme isleminde bize category lazımdı
+    # bu category foreign keydi biz key e ulastıktan sonra keydeki slug bilgisine ulasmlaıyız
+    # onun syntax o da category__slug gibi 
+    context = {
+        'blogs':Blog.objects.filter(is_active = True, category__slug = slug),
+        'categories':Category.objects.all(),
+        'selectedCategory':Category.objects.get(slug = slug)
+        # bu sekilde all diyerek tum verileri alrızı
+    }
+
+
+    # iceri de aktarmak icin parametre olarak yolladık
+    return render(request, 'blog/blogs.html',context)
 
