@@ -1,6 +1,7 @@
 from distutils.command.upload import upload
 from email.policy import default
 import this
+from unicodedata import category
 from django.db import models
 from django.utils.text import slugify
 
@@ -54,11 +55,15 @@ class Blog (models.Model):
     slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
 
     # foreig key ekleyecegiz bloglarımıza cünkü clogları categorilerde sınıflayacagiz
-    category = models.ForeignKey(Category, default=3,  on_delete = models.CASCADE)
+    #category = models.ForeignKey(Category, default=3,  on_delete = models.CASCADE)
+    # category i sildim çünkü çok a çok ilişki yapıcam bir blog birden fazla kategoride olabilir
     # MODELS CASCADE category silindi mi blogun da silinmesini saglıyor
     #  onun yerine SET_NULL null=True ya da defaul ataarsın atma da kullanabailirsin
     # basta var olan kayıtlara bu kolon eklenicek ve null olsun istemiyoruz heppsi
     # programlamananın altında oldugudan default olarak onun id sini vereyim
+
+    # .çok çoka ilişki çin
+    categories = models.ManyToManyField(Category, blank = True) # hangi model icin oldugunu yazıyorsun o kadar
 
     # bizim ekstra her biri icin slug girmemize gerek yok
     # save metonunu overwrite edip title koyduk mu slug da koymaya ayarlayacagız

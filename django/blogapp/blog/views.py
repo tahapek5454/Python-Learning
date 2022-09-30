@@ -120,9 +120,14 @@ def blogs_by_category(request, slug):
     # burda filtrelee islemini gerceklestirecegiz
     # filtreleme isleminde bize category lazımdı
     # bu category foreign keydi biz key e ulastıktan sonra keydeki slug bilgisine ulasmlaıyız
-    # onun syntax o da category__slug gibi 
+    # onun syntax o da category__slug gibi
+
+    # ilgil sorguyu basta cektik onla ilgili blogdaki eşleşenleri çekmek içi
+    # blog_set
     context = {
-        'blogs':Blog.objects.filter(is_active = True, category__slug = slug),
+        #'blogs':Blog.objects.filter(is_active = True, category__slug = slug),
+        # many to many e gecince yontem degistirdik
+        'blogs':Category.objects.get(slug=slug).blog_set.filter(is_active = True),
         'categories':Category.objects.all(),
         'selectedCategory':Category.objects.get(slug = slug)
         # bu sekilde all diyerek tum verileri alrızı
