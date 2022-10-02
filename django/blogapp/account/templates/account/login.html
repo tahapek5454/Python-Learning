@@ -17,7 +17,41 @@ Login Title
 {% block content %}
 
 <div class="container mt-3">
-   <h1>Login</h1>
+   <div class="col">
+      <h1 class="display-6">Login</h1>
+      <hr>
+
+      <!-- ilgili url e post edicez gondericez bilgilerimizi -->
+      <!-- id burda js tarafından kullanılır ama name server tarafından kullanılır
+           biz bilgileri servera post edecegimizde anahtar kelimeleri name tagıyla yaptık -->
+      <form action="{% url 'login' %}" method="POST">
+         {% csrf_token %}
+         <!-- bu token güvenlig icin formu getleyen ve postlayan aynı kisği mi kontrol eder
+               olmazsa calismaz -->
+         {% if eror %}
+            <!-- error biz yolluyruz paramtere olark blogda da context adında yollardık hani -->
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+
+               <div class="container">
+                  <p class="display-6"> 
+                     {{ eror }}
+                  </p>
+               </div>
+            </div>
+         {% endif %}
+
+         <div class="mb-3">
+           <label for="username" class="form-label">User Name</label>
+           <input type="text" class="form-control" name="username" aria-describedby="usernameHelp">
+           <div name="usernameHelp" class="form-text">You shoul write user name to login.</div>
+         </div>
+         <div class="mb-3">
+           <label for="password" class="form-label">Password</label>
+           <input type="password" class="form-control" name="password">
+         </div>
+         <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+   </div>
 </div>
 
 {% endblock %}
