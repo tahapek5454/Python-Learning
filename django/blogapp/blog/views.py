@@ -2,7 +2,7 @@ from multiprocessing import context
 from select import select
 from unicodedata import category
 from django.http.response import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from blog.models import Blog, Category
 # bu importu db den blog ları ve caegoryleri dinamik cekmek icin aldık
 
@@ -51,6 +51,11 @@ data = {
 # fakat artık db den veri cekcegimizden bunu kullanmauacagiz
 def index(request):
 
+
+    # burada biz eger giris yapmadıysak sayfa bizi logine atıcak
+    if  not request.user.is_authenticated:
+        return redirect('login')
+
     # data yı sayfaya yollamamız icin
     # context = {
     #     'blogs':data['blogs']
@@ -70,6 +75,10 @@ def index(request):
     return render(request, "blog/index.html", context)
 
 def blogs(request):
+
+    # burada biz eger giris yapmadıysak sayfa bizi logine atıcak
+    if  not request.user.is_authenticated:
+        return redirect('login')
 
     # data yı sayfaya yollamamız icin key value lazım onun da key i ile islem yapıyorsun
      # data yı sayfaya yollamamız icin

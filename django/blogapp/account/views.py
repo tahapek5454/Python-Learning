@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 # authenticate method bize gelen username passwordun giris yapıp yapacagını bulmaya yarıyor
 # login iste bizim tarayıcı üzerinde sessiona drekt cookie yi ekliyor hesanı loginletiyor
+# logout ise direkt sessiondan silip log out ettiriyor
 from django.contrib.auth.models import User
 # bu class bizim userlar uzerinden islem yapmaıza ve user eklememizi saglayacak
 
@@ -76,5 +77,7 @@ def register_request(request):
 
 
 def logout_request(request):
+
+    logout(request) # request icersindeki userin session id sini siler log out eder
 
     return redirect('home') # direkt gonderir

@@ -12,15 +12,17 @@
         </ul>
 
         <ul class="navbar-nav ms-auto">
-            <!-- user burda register icerseinden geliyor ve authenticated bize
+            <!-- user burda requestin  icerseinden geliyor orada bir user objesi var ve authenticated bize
                 otorumun açık olup olmadıgın ısöylüyor -->
             {% if user.is_authenticated %}
+
+                <li class="nav-item">
+                    <a href="" class="nav-link">Welcome {{ user.username }}</a>
+                </li>
                 <li class="nav-item">
                     <a href="{% url 'logout' %}" class="nav-link">Logout</a>
                 </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">Welcome</a>
-                </li>
+                
             {% else %}
             
                 <li class="nav-item">
