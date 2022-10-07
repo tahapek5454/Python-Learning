@@ -7,7 +7,7 @@ myClient = pymongo.MongoClient('mongodb://localhost:27017')
 mydb = myClient['Deneme']
 
 # collectionmuzua gecelim
-myCollection = mydb["Product"]
+myCollection = mydb["Products"]
 
 # var olan collectionları listeleyim
 print(mydb.list_collection_names())
